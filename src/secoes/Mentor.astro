@@ -1,0 +1,57 @@
+---
+import { titulo, texto } from "../lib/texto";
+const { c } = Astro.props;
+const d = c.mentor, tl = d.linha_do_tempo, pr = d.proposito;
+---
+<section class="section mentor" id="mentora">
+  <div class="container">
+    <div class="mentor__intro">
+      <div class="mentor__photo reveal" data-reveal="left">
+        {d.foto
+          ? <img data-parallax="0.06" src={`/img/${d.foto}`} alt={c.aluno.nome} width="700" height="802" loading="lazy">
+          : <div class="placeholder placeholder--retrato">FOTO: retrato de {c.aluno.nome}</div>}
+        <div class="mentor__sig"><b>{d.assinatura?.nome ?? c.aluno.nome}</b><span>{d.assinatura?.papel ?? ""}</span></div>
+      </div>
+      <div>
+        <span class="eyebrow reveal">{d.eyebrow ?? "Sua mentora"}</span>
+        <h2 class="h-section reveal" set:html={titulo(d.titulo)} />
+        <div class="reveal">
+          {d.paragrafos.map((p: string, i: number) => <p class={i === 0 ? "lead" : undefined} set:html={texto(p)} />)}
+        </div>
+        {d.credenciais?.length > 0 && <ul class="creds" data-stagger>{d.credenciais.map((x: string) => <li>{x}</li>)}</ul>}
+      </div>
+    </div>
+
+    {tl?.ativa && (
+      <div class="journey">
+        <div class="journey__head">
+          <h3 class="h-mid reveal" set:html={titulo(tl.titulo)} />
+          <div class="journey__nav reveal">
+            <button class="icon-btn" type="button" data-prev="timeline" aria-label="Anterior"><svg><use href="#i-left"/></svg></button>
+            <button class="icon-btn" type="button" data-next="timeline" aria-label="Próximo"><svg><use href="#i-right"/></svg></button>
+          </div>
+        </div>
+        <ol class="timeline" data-carousel="timeline">
+          {tl.itens.map((it: any, i: number) => (
+            <li class:list={["tl-item reveal", { "tl-item--peak": it.destaque || i === tl.itens.length - 1 }]} style={`--d:${(i * 0.06).toFixed(2)}s`}>
+              <span class="tl-item__when text-gold">{it.quando}</span>
+              <h4>{it.titulo}</h4>
+              <p set:html={texto(it.texto)} />
+            </li>
+          ))}
+        </ol>
+        <div class="progress" aria-hidden="true"><i data-progress="timeline"></i></div>
+      </div>
+    )}
+
+    {pr?.citacao && (
+      <figure class:list={["purpose reveal", { "purpose--sem-img": !pr.imagem, "purpose--lado": pr.layout === "lado-a-lado" }]} data-reveal="scale">
+        {pr.imagem && <img class="purpose__img" data-parallax="0.05" src={`/img/${pr.imagem}`} alt={pr.alt ?? c.aluno.nome} width={pr.largura ?? 1600} height={pr.altura ?? 808} loading="lazy">}
+        <figcaption class="purpose__content">
+          <p class="purpose__quote">“{pr.citacao}”</p>
+          <span class="purpose__by">— {pr.autor ?? c.aluno.nome}</span>
+        </figcaption>
+      </figure>
+    )}
+  </div>
+</section>

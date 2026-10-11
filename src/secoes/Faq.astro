@@ -1,0 +1,30 @@
+---
+import { titulo, texto } from "../lib/texto";
+const { c } = Astro.props;
+const d = c.faq;
+---
+<section class="section faq section--light" id="duvidas">
+  <div class="container">
+    <div class="faq__grid">
+      <div class="faq__aside">
+        <span class="eyebrow reveal">{d.eyebrow ?? "Dúvidas frequentes"}</span>
+        <h2 class="h-section reveal" set:html={titulo(d.titulo ?? "Perguntas **frequentes**")} />
+        {d.texto && <p class="reveal" set:html={texto(d.texto)} />}
+        {d.ajuda && (
+          <div class="faq__help reveal">
+            {d.ajuda.imagem && <img src={`/img/${d.ajuda.imagem}`} alt="" width="54" height="54" loading="lazy">}
+            <span set:html={texto(d.ajuda.texto)} />
+          </div>
+        )}
+      </div>
+      <div class="acc reveal">
+        {d.itens.map((it: any, i: number) => (
+          <div class:list={["acc__item", { "is-open": i === 0 }]}>
+            <button class="acc__btn" type="button" aria-expanded={i === 0 ? "true" : "false"}>{it.pergunta}<span class="acc__icon" aria-hidden="true"></span></button>
+            <div class="acc__panel"><div><p set:html={texto(it.resposta)} /></div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

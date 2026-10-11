@@ -1,0 +1,35 @@
+---
+import { titulo, texto, destino, rotuloCta } from "../lib/texto";
+import Blocos from "./Blocos.astro";
+const { c } = Astro.props;
+const d = c.produto;
+---
+<section class="section movement section--light" id="produto">
+  <div class="container">
+    <div class:list={["movement__top", { "movement__top--solo": !d.nao_e }]}>
+      <div>
+        <span class="eyebrow reveal">{d.eyebrow ?? "O que é?"}</span>
+        <h2 class="h-section reveal" set:html={titulo(d.titulo)} />
+        {d.lead && <p class="lead reveal" set:html={texto(d.lead)} />}
+      </div>
+      {d.nao_e && (
+        <div class="not-is">
+          {d.nao_e.nao.map((n: string, i: number) => (
+            <div class="not-is__row reveal" data-reveal="right" style={`--d:${(i * 0.1).toFixed(1)}s`}><span class="x"><svg><use href="#i-x"/></svg></span><span set:html={texto(n)} /></div>
+          ))}
+          <div class="not-is__row not-is__row--yes reveal" data-reveal="right" style={`--d:${(d.nao_e.nao.length * 0.1).toFixed(1)}s`}><span class="x"><svg><use href="#i-check"/></svg></span><span set:html={texto(d.nao_e.sim)} /></div>
+        </div>
+      )}
+    </div>
+
+    <Blocos blocos={d.blocos} />
+
+    {d.cta && (
+      <div class="cta-block reveal">
+        <a href={destino(d.cta, c.config.checkout_url, "#oferta")} class="btn btn--gold btn--lg" data-cta="produto">
+          {rotuloCta(d.cta)}<span class="btn__icon"><svg><use href="#i-arrow"/></svg></span>
+        </a>
+      </div>
+    )}
+  </div>
+</section>

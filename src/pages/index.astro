@@ -1,0 +1,62 @@
+---
+// Página de vendas. A ordem das seções é FIXA (regras/estrutura-vendas.md).
+// O conteúdo vem de src/dados/conteudo.json e o visual, de src/dados/tema.json.
+import Base from "../layouts/Base.astro";
+import Alerta from "../secoes/Alerta.astro";
+import Header from "../secoes/Header.astro";
+import Hero from "../secoes/Hero.astro";
+import Faixa from "../secoes/Faixa.astro";
+import Numeros from "../secoes/Numeros.astro";
+import Depoimentos from "../secoes/Depoimentos.astro";
+import Mentor from "../secoes/Mentor.astro";
+import Produto from "../secoes/Produto.astro";
+import Diferente from "../secoes/Diferente.astro";
+import ComoFunciona from "../secoes/ComoFunciona.astro";
+import Entregaveis from "../secoes/Entregaveis.astro";
+import Oferta from "../secoes/Oferta.astro";
+import Garantia from "../secoes/Garantia.astro";
+import Faq from "../secoes/Faq.astro";
+import Urgencia from "../secoes/Urgencia.astro";
+import Rodape from "../secoes/Rodape.astro";
+import CtaFixo from "../secoes/CtaFixo.astro";
+import c from "../dados/conteudo.json";
+import tema from "../dados/tema.json";
+
+const v = c.config.variantes ?? {};
+const ativa = (s: any) => s && s.ativa !== false;
+
+// Menu do topo: só aponta para seções que existem na página.
+const links = [
+  { id: "depoimentos", rotulo: "Depoimentos", on: true },
+  { id: "produto", rotulo: "O que é?", on: true },
+  { id: "recebe", rotulo: "O que você recebe", on: true },
+  { id: "mentora", rotulo: c.mentor?.eyebrow ?? "Sua mentora", on: true },
+  { id: "garantia", rotulo: "Garantia", on: true },
+].filter((l) => l.on);
+---
+<Base c={c} tema={tema as any}>
+  <Alerta d={c.alerta} />
+  <Header c={c} links={links} />
+  <main>
+    <Hero c={c} variante={v.hero} />
+    <!-- Tudo abaixo fica escondido até o minuto do pitch (delay pelo tempo assistido da VSL) -->
+    <div class="esconder">
+      {ativa(c.faixa) && <Faixa c={c} />}
+      {ativa(c.numeros) && <Numeros c={c} />}
+      <Depoimentos c={c} />
+      <Mentor c={c} />
+      <Produto c={c} />
+      <Diferente c={c} />
+      {ativa(c.como_funciona) && <ComoFunciona c={c} />}
+      <Entregaveis c={c} variante={v.entregaveis} />
+      <Oferta c={c} />
+      <Garantia c={c} />
+      {ativa(c.faq) && <Faq c={c} />}
+      <Urgencia c={c} />
+    </div>
+  </main>
+  <div class="esconder">
+    <Rodape c={c} />
+    <CtaFixo c={c} />
+  </div>
+</Base>

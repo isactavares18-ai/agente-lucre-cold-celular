@@ -1,0 +1,70 @@
+---
+// Variante A: texto à esquerda, VSL à direita (vertical 9:16).
+// Variante B: tudo centralizado, VSL horizontal 16:9 abaixo da headline.
+import { titulo, texto, destino, rotuloCta } from "../lib/texto";
+const { c, variante = "A" } = Astro.props;
+const d = c.hero, cfg = c.config, img = c.imagens ?? {};
+const vsl = cfg.vsl ?? {};
+const formato = vsl.formato ?? (variante === "B" ? "horizontal" : "vertical");
+const estrelas = Array.from({ length: 12 }, (_, i) => {
+  const a = (i * 30 - 90) * Math.PI / 180;
+  return { x: +(200 + 170 * Math.cos(a) - 11).toFixed(1), y: +(200 + 170 * Math.sin(a) - 11).toFixed(1) };
+});
+---
+<section class:list={["hero", `hero--${variante}`, `hero--vsl-${formato}`]} id="video">
+  <div class="hero__bg" aria-hidden="true" data-parallax="0.3"></div>
+  <div class="hero__grid-lines" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      {d.tag && (
+        <span class="hero__tag reveal">
+          {img.logo_icone && <img src={`/img/${img.logo_icone}`} alt="" width="26" height="26">}
+          {d.tag}
+        </span>
+      )}
+      <h1 class:list={["h-hero reveal", { "h-hero--longa": (d.headline ?? "").length > 170 }]} style="--d:.08s" set:html={titulo(d.headline)} />
+      <p class="hero__sub reveal" style="--d:.3s" set:html={texto(d.subheadline)} />
+
+      <div class="esconder hero__delay">
+        <div class="hero__cta reveal" style="--d:.4s">
+          <a href={destino(d.cta, cfg.checkout_url)} class="btn btn--gold btn--lg" data-cta="hero">
+            {rotuloCta(d.cta)}
+            <span class="btn__icon"><svg><use href="#i-arrow"/></svg></span>
+          </a>
+        </div>
+        {d.provas?.length > 0 && (
+          <ul class="hero__proof" data-stagger style="--d:.5s">
+            {d.provas.map((p: any) => <li><svg><use href={`#i-${p.icone ?? "check-circle"}`}/></svg> {p.texto ?? p}</li>)}
+          </ul>
+        )}
+      </div>
+    </div>
+
+    <div class="vsl reveal" data-reveal="scale" style="--d:.3s">
+      {d.anel !== false && (
+        <svg class="vsl__stars" viewBox="0 0 400 400" aria-hidden="true" style="color:var(--dst-500)">
+          <circle cx="200" cy="200" r="170" fill="none" stroke="color-mix(in srgb, var(--dst-400) 12%, transparent)"/>
+          {estrelas.map((e) => <use href={`#${d.anel_simbolo ?? "eu-star"}`} width="22" height="22" x={e.x} y={e.y}/>)}
+        </svg>
+      )}
+      <div class="vsl__glow" aria-hidden="true"></div>
+      <div class="vsl__frame">
+        {d.rotulo_video !== false && <span class="vsl__label"><i></i> {d.rotulo_video ?? "Assista antes que saia do ar"}</span>}
+        <div class="vsl__screen">
+          {vsl.tipo === "vturb" && vsl.player_id
+            ? <vturb-smartplayer id={`vid-${vsl.player_id}`} style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
+            : vsl.embed_html
+              ? <Fragment set:html={vsl.embed_html} />
+              : <div class="placeholder">VSL: colar o embed da vturb no briefing</div>}
+        </div>
+      </div>
+      {d.chips?.map((ch: any, i: number) => (
+        <div class={`vsl__chip vsl__chip--${i + 1}`} aria-hidden="true">
+          <span class="vsl__chip-icon">{ch.icone ? <svg width="18" height="18"><use href={`#i-${ch.icone}`}/></svg> : ch.simbolo}</span>
+          <span><b>{ch.destaque}</b>{ch.legenda}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

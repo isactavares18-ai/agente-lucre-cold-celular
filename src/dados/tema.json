@@ -1,0 +1,15 @@
+{
+  "conceito": "Exemplo fictício: tons de chocolate e caramelo para um negócio de confeitaria caseira.",
+  "origem": "exemplo da fábrica",
+  "cores": {
+    "escuro": "#2b1a14",
+    "destaque": "#e0a34a",
+    "acento": "#d9677a",
+    "claro": "#fbf6ef",
+    "cta_texto": "#2b1a14"
+  },
+  "fontes": {
+    "titulo": "Fraunces",
+    "corpo": "Inter"
+  }
+}

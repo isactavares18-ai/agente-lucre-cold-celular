@@ -1,0 +1,1 @@
+Fontes próprias da identidade do aluno (.woff2). Declare em tema.json > fontes.arquivos.

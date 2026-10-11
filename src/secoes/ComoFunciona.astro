@@ -1,0 +1,22 @@
+---
+import { titulo, texto, colunas } from "../lib/texto";
+const { c } = Astro.props;
+const d = c.como_funciona;
+---
+<section class="section how section--light" id="como-funciona">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow eyebrow--center">{d.eyebrow ?? "Na prática"}</span>
+      <h2 class="h-section" set:html={titulo(d.titulo)} />
+      {d.lead && <p class="lead" set:html={texto(d.lead)} />}
+    </div>
+    <ol class="steps" style={`--cols:${colunas(d.passos.length, 4)}`}>
+      {d.passos.map((p: any, i: number) => (
+        <li class="step reveal" style={`--d:${(i * 0.08).toFixed(2)}s`}>
+          <span class="step__num">{i + 1}</span>
+          <div><h3>{p.titulo}</h3>{p.texto && <p set:html={texto(p.texto)} />}</div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

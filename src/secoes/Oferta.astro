@@ -1,0 +1,71 @@
+---
+import { titulo, texto, destino, rotuloCta, colunas } from "../lib/texto";
+const { c } = Astro.props;
+const d = c.oferta, p = d.preco, card = d.card ?? {};
+const [inteiro, centavos] = String(p.valor_parcela).replace(/^R\$\s*/, "").split(",");
+---
+<section class="section offer section--light" id="oferta">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow eyebrow--center">{d.eyebrow ?? "Sua vaga"}</span>
+      <h2 class="h-section" set:html={titulo(d.titulo)} />
+      {d.lead && <p class="lead" set:html={texto(d.lead)} />}
+    </div>
+
+    {d.ancoragens?.length > 0 && (
+      <div class="anchor" style={`--cols:${colunas(d.ancoragens.length, 3)}`}>
+        {d.ancoragens.map((a: any, i: number) => (
+          <div class="anchor__card reveal" style={`--d:${(i * 0.08).toFixed(2)}s`}>
+            <small>{a.rotulo}</small>
+            <div class="anchor__price">{a.riscado === false ? a.valor : <s>{a.valor}</s>}</div>
+            <p set:html={texto(a.texto)} />
+          </div>
+        ))}
+      </div>
+    )}
+
+    {d.justificativa && <div class="why-cheap reveal"><p set:html={texto(d.justificativa)} /></div>}
+
+    <div class:list={["price-card reveal", { "price-card--solo": !card.lista?.length }]} data-reveal="scale" id="chec">
+      {card.lista?.length > 0 && (
+        <div class="price-card__left">
+          {card.imagem && <img data-parallax="0.05" src={`/img/${card.imagem}`} alt={c.aluno.produto} width="720" height="689" loading="lazy">}
+          <ul class="price-list" data-stagger>
+            {card.lista.map((l: any) => (
+              <li class={l.bonus ? "is-bonus" : undefined}><svg><use href="#i-check-circle"/></svg><span><b>{l.titulo}</b>{l.texto}</span></li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div class="price-card__right">
+        {card.tag && <span class="price-tag">{card.tag}</span>}
+        <h3>{card.titulo ?? `Acesso completo ao ${c.aluno.produto}`}</h3>
+        <div class="price" aria-label={`${p.parcelas} de R$ ${p.valor_parcela}`}>
+          <span class="price__x">{p.parcelas}</span>
+          <span class="price__cur">R$</span>
+          <span class="price__big">{inteiro}</span>
+          {centavos && <span class="price__cents">,{centavos}</span>}
+        </div>
+        <p class="price-alt">ou <strong>{p.avista}</strong> à vista</p>
+        {p.por_dia && <p class="price-day"><svg width="16" height="16"><use href="#i-clock"/></svg> <Fragment set:html={texto(p.por_dia)} /></p>}
+        <a href={destino(d.cta, c.config.checkout_url)} class="btn btn--gold btn--lg btn--block" data-cta="oferta">
+          {rotuloCta(d.cta)}<span class="btn__icon"><svg><use href="#i-arrow"/></svg></span>
+        </a>
+        <div class="pay-row">
+          <ul class="pay-methods" data-stagger>
+            {(d.pagamento?.metodos ?? [{ icone: "bolt", texto: "Pix" }, { icone: "card", texto: `Cartão em até ${p.parcelas}` }, { icone: "lock", texto: "Compra 100% segura" }])
+              .map((m: any) => <li><svg><use href={`#i-${m.icone}`}/></svg>{m.texto}</li>)}
+          </ul>
+          {d.pagamento?.nota && <span>{d.pagamento.nota}</span>}
+        </div>
+      </div>
+    </div>
+
+    {d.comparacoes?.length > 0 && (
+      <ul class="everyday">
+        {d.comparacoes.map((x: any, i: number) => <li class="reveal" style={`--d:${(i * 0.08).toFixed(2)}s`}><svg><use href={`#i-${x.icone ?? "check-circle"}`}/></svg>{x.texto}</li>)}
+      </ul>
+    )}
+    {d.comparacoes_fecho && <p class="everyday-foot reveal" set:html={texto(d.comparacoes_fecho)} />}
+  </div>
+</section>

@@ -1,0 +1,51 @@
+---
+import { titulo, texto, destino, rotuloCta } from "../lib/texto";
+const { c } = Astro.props;
+const d = c.urgencia;
+---
+<section class="section final" id="final">
+  <div class="final__bg" aria-hidden="true" data-parallax="0.15"></div>
+  <div class="container container--narrow center">
+    {d.selo && <span class="urgency reveal"><svg width="16" height="16"><use href="#i-alert"/></svg> {d.selo}</span>}
+    <h2 class="h-section reveal" set:html={titulo(d.titulo)} />
+    {d.lead && <p class="lead reveal" set:html={texto(d.lead)} />}
+
+    {d.paineis?.length > 0 && (
+      <div class="urgency-grid">
+        {d.paineis.map((p: any, i: number) => (
+          <div class="panel reveal" style={`--d:${(i * 0.08).toFixed(2)}s`}>
+            <h3><svg><use href={`#i-${p.icone ?? "alert"}`}/></svg>{p.titulo}</h3>
+            <p set:html={texto(p.texto)} />
+          </div>
+        ))}
+      </div>
+    )}
+    {d.paragrafos?.map((p: string) => <p class="reveal" set:html={texto(p)} />)}
+
+    {d.frase_final && <p class="dream-killer reveal" set:html={titulo(d.frase_final)} />}
+
+    {d.decisao && (
+      <div class="decision">
+        <div class="decision__opt decision__opt--a reveal" data-reveal="left"><small>Opção 1</small>{d.decisao.a}</div>
+        <div class="decision__opt decision__opt--b reveal" data-reveal="right" style="--d:.08s"><small>Opção 2</small>{d.decisao.b}</div>
+      </div>
+    )}
+
+    <div class="cta-block reveal">
+      <a href={destino(d.cta, c.config.checkout_url)} class="btn btn--gold btn--lg" data-cta="final">
+        {rotuloCta(d.cta)}<span class="btn__icon"><svg><use href="#i-arrow"/></svg></span>
+      </a>
+      <div class="cta-note">
+        {(d.notas ?? [{ icone: "shield", texto: `${c.garantia.dias} dias de garantia` }, { icone: "lock", texto: "Compra segura" }, { icone: "bolt", texto: "Acesso imediato" }])
+          .map((n: any) => <span><svg><use href={`#i-${n.icone}`}/></svg>{n.texto}</span>)}
+      </div>
+    </div>
+
+    {d.fechamento && (
+      <div class="closing reveal" data-reveal="scale">
+        {d.fechamento.imagem && <img src={`/img/${d.fechamento.imagem}`} alt={c.aluno.nome} width="92" height="92" loading="lazy">}
+        <div><p>“{d.fechamento.texto}”</p><b>{c.aluno.nome}</b></div>
+      </div>
+    )}
+  </div>
+</section>

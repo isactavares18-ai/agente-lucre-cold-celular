@@ -1,0 +1,44 @@
+---
+import { titulo, texto } from "../lib/texto";
+import Blocos from "./Blocos.astro";
+const { c } = Astro.props;
+const d = c.diferente, img = c.imagens ?? {};
+---
+<section class="section different" id="diferente">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow eyebrow--center">{d.eyebrow ?? "A verdade que ninguém te conta"}</span>
+      <h2 class="h-section" set:html={titulo(d.titulo)} />
+    </div>
+
+    {(d.citacao || d.paragrafos?.length) && (
+      <div class:list={["confession", { "confession--solo": !d.citacao }]}>
+        {d.citacao && <blockquote class="confession__quote reveal" data-reveal="left">{d.citacao}</blockquote>}
+        <div class="reveal" style="--d:.1s">
+          {d.paragrafos.map((p: string, i: number) => <p class={i === 0 && d.citacao ? "lead" : undefined} set:html={texto(p)} />)}
+        </div>
+      </div>
+    )}
+
+    <Blocos blocos={d.blocos_antes} />
+
+    {d.comparativo && (
+      <div class="compare reveal" data-reveal="scale">
+        <div class="compare__col compare__col--them">
+          <h3 class="compare__title">{d.comparativo.eles.titulo}</h3>
+          <ul class="compare__list" data-stagger>
+            {d.comparativo.eles.itens.map((x: string) => <li><span class="compare__mark"><svg><use href="#i-x"/></svg></span><span set:html={texto(x)} /></li>)}
+          </ul>
+        </div>
+        <div class="compare__col compare__col--us">
+          <h3 class="compare__title">{img.logo_icone && <img src={`/img/${img.logo_icone}`} alt="" width="38" height="38">}{d.comparativo.nos.titulo}</h3>
+          <ul class="compare__list" data-stagger>
+            {d.comparativo.nos.itens.map((x: string) => <li><span class="compare__mark"><svg><use href="#i-check"/></svg></span><span set:html={texto(x)} /></li>)}
+          </ul>
+        </div>
+      </div>
+    )}
+
+    <Blocos blocos={d.blocos_depois} />
+  </div>
+</section>

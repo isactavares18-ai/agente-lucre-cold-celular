@@ -1,0 +1,21 @@
+---
+import { separaNumero, colunas } from "../lib/texto";
+const { c } = Astro.props;
+---
+<section class="stats" aria-label="Números">
+  <div class="container">
+    <div class="stats__grid reveal" data-reveal="scale" style={`--cols:${colunas(c.numeros.itens.length, 4)}`}>
+      {c.numeros.itens.map((n: any) => {
+        const p = separaNumero(n.numero);
+        return (
+          <div class="stat">
+            <div class="stat__num text-gold">
+              {p ? <>{p.antes}<span data-count={p.numero}>{p.numero}</span>{p.depois}</> : n.numero}
+            </div>
+            <p class="stat__label">{n.legenda}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

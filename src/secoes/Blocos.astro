@@ -1,0 +1,79 @@
+---
+// Blocos de apoio usados dentro de "produto" e "diferente".
+// Tipos: texto · nao-e · painel-escuro · analogia · frase-destaque · comparativo · citacao-icone
+import { titulo, texto, colunas } from "../lib/texto";
+const { blocos = [] } = Astro.props;
+---
+{blocos.map((b: any) => {
+  if (b.tipo === "texto") return (
+    <div class="bloco-texto reveal">{b.paragrafos.map((p: string) => <p set:html={texto(p)} />)}</div>
+  );
+
+  if (b.tipo === "painel-escuro") return (
+    <div class="gluta reveal">
+      <div class="gluta__head">
+        {b.eyebrow && <span class="eyebrow">{b.eyebrow}</span>}
+        <h3 class="h-section" set:html={titulo(b.titulo)} />
+        {b.lead && <p class="lead" set:html={texto(b.lead)} />}
+      </div>
+      {b.paineis?.length > 0 && (
+        <div class="gluta__grid" style={`--cols:${colunas(b.paineis.length, 3)}`}>
+          {b.paineis.map((p: any) => (
+            <div class="panel">
+              {p.icone && <div class="panel__icon"><svg><use href={`#i-${p.icone}`}/></svg></div>}
+              {p.kicker && <span class="panel__kicker">{p.kicker}</span>}
+              <h3>{p.titulo}</h3>
+              {p.texto && <p set:html={texto(p.texto)} />}
+              {p.etiquetas && <div class="symptoms" data-stagger>{p.etiquetas.map((t: string) => <span>{t}</span>)}</div>}
+            </div>
+          ))}
+        </div>
+      )}
+      {b.antes_depois && (
+        <div class="then-now">
+          <div class="then-now__card then-now__card--then"><small>{b.antes_depois.antes.rotulo}</small><p set:html={texto(b.antes_depois.antes.texto)} /></div>
+          <div class="then-now__arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></div>
+          <div class="then-now__card then-now__card--now"><small>{b.antes_depois.depois.rotulo}</small><p set:html={texto(b.antes_depois.depois.texto)} /></div>
+        </div>
+      )}
+    </div>
+  );
+
+  if (b.tipo === "analogia") return (
+    <div class="desert">
+      <div>
+        {b.eyebrow && <span class="eyebrow reveal">{b.eyebrow}</span>}
+        <h3 class="h-mid reveal" set:html={titulo(b.titulo)} />
+        <p class="reveal" set:html={texto(b.texto)} />
+        {b.destaque && (
+          <div class="fx reveal">
+            <div class="fx__eq" set:html={titulo(b.destaque.valor)} />
+            <p set:html={texto(b.destaque.texto)} />
+          </div>
+        )}
+      </div>
+      {b.fluxo?.length > 0 && (
+        <div class="flow" style={`--cols:${colunas(b.fluxo.length, 4)}`}>
+          {b.fluxo.map((f: any, i: number) => (
+            <div class:list={["flow__step reveal", { "flow__step--gold": i === b.fluxo.length - 1 }]} style={`--d:${(i * 0.08).toFixed(2)}s`}>
+              <div class="flow__icon"><svg><use href={`#i-${f.icone ?? "check"}`}/></svg></div>{f.texto}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
+  if (b.tipo === "frase-destaque") return (
+    <p class="big-truth reveal" data-inview set:html={titulo(b.texto)} />
+  );
+
+  if (b.tipo === "citacao-icone") return (
+    <div class="coke reveal">
+      <div class="coke__icon"><svg><use href={`#i-${b.icone ?? "bottle"}`}/></svg></div>
+      <p class="coke__q" set:html={texto(b.texto)} />
+    </div>
+  );
+
+  return null;
+})}

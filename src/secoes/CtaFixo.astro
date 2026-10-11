@@ -1,0 +1,9 @@
+---
+import { destino } from "../lib/texto";
+const { c } = Astro.props;
+const p = c.oferta.preco;
+---
+<div class="sticky-cta" aria-hidden="true">
+  <div class="sticky-cta__txt"><b>{p.parcelas} R$ {String(p.valor_parcela).replace(/^R\$\s*/, "")}</b>ou {p.avista} à vista · {c.garantia.dias} dias de garantia</div>
+  <a href={destino(c.oferta.cta, c.config.checkout_url)} class="btn btn--gold" data-cta="sticky" tabindex="-1">{c.cta_fixo?.texto ?? "Garantir vaga"}</a>
+</div>

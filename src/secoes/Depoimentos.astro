@@ -1,0 +1,28 @@
+---
+import { titulo, texto } from "../lib/texto";
+const { c } = Astro.props;
+const d = c.depoimentos;
+const prop = d.proporcao ?? "9/16";
+---
+<section class="section testimonials section--light" id="depoimentos">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow eyebrow--center">{d.eyebrow ?? "Depoimentos"}</span>
+      <h2 class="h-section" set:html={titulo(d.titulo)} />
+      {d.subtitulo && <p class="lead" set:html={texto(d.subtitulo)} />}
+    </div>
+    <div class="t-grid" data-carousel="depo" style={`--t-prop:${prop}`}>
+      {d.videos.map((v: any, i: number) => (
+        <article class="t-card reveal" style={`--d:${(i * 0.08).toFixed(2)}s`}>
+          <div class="t-card__video">
+            {v.vimeo_id
+              ? <iframe src={`https://player.vimeo.com/video/${v.vimeo_id}?title=0&byline=0&portrait=0`} title={v.rotulo} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+              : v.embed_html ? <Fragment set:html={v.embed_html} /> : <div class="placeholder">{v.rotulo}: link do Vimeo pendente</div>}
+          </div>
+          <div class="t-card__foot"><b>{v.rotulo}</b><span class="t-stars" aria-label="5 estrelas">{[1,2,3,4,5].map(() => <svg><use href="#i-star"/></svg>)}</span></div>
+        </article>
+      ))}
+    </div>
+    <p class="t-hint"><svg><use href="#i-swipe"/></svg> Arraste para ver mais</p>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+// Logo sempre visível; navegação e CTA ficam atrás do delay.
+const { c, links } = Astro.props;
+const img = c.imagens ?? {};
+---
+<header class="site-header" id="topo">
+  <div class="container site-header__inner">
+    <a href="#topo" class="brand" aria-label={`${c.aluno.produto}: início`}>
+      {img.logo
+        ? <img src={`/img/${img.logo}`} alt={c.aluno.produto} width={img.logo_largura ?? 327} height={img.logo_altura ?? 89}>
+        : <span class="brand__txt">{c.aluno.produto}</span>}
+    </a>
+    <div class="esconder header__delay">
+      <div class="header__dir">
+        <nav class="nav" id="nav" aria-label="Navegação principal">
+          {links.map((l: any) => <a href={`#${l.id}`}>{l.rotulo}</a>)}
+        </nav>
+        <a href="#oferta" class="btn btn--gold header-cta">{c.header?.cta_texto ?? "Quero entrar"}</a>
+        <button class="menu-toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="Abrir menu"><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>

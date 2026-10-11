@@ -1,0 +1,16 @@
+---
+const { c } = Astro.props;
+const d = c.faixa, icone = c.imagens?.logo_icone;
+const item = d.frases;
+---
+<div class:list={["ribbon", { "ribbon--gold": d.estilo === "destaque", "ribbon--reverse": d.reverso }]} aria-hidden="true">
+  <div class="ribbon__inner">
+    <div class="ribbon__track">
+      {[0, 1, 2].map(() => (
+        <div class="ribbon__item">
+          {item.map((f: string) => <>{f} {icone ? <img src={`/img/${icone}`} alt="" width="26" height="26"> : <span class="ribbon__sep">✦</span>}</>)}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

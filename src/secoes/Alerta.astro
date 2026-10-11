@@ -1,0 +1,8 @@
+---
+import { texto } from "../lib/texto";
+const { d } = Astro.props;
+---
+<div class="alert-bar" role="note">
+  <span class="alert-bar__dot" aria-hidden="true"></span>
+  <Fragment set:html={texto(d.texto)} />
+</div>

@@ -1,0 +1,441 @@
+{
+  "_doc": "EXEMPLO FICTÍCIO (marca, pessoa e números inventados). Serve só para mostrar a estrutura: troque TUDO pelo conteúdo do projeto. **x** = destaque, ~~x~~ = riscado.",
+  "aluno": {
+    "nome": "Mentora Exemplo",
+    "slug": "metodo-exemplo",
+    "produto": "Método Exemplo",
+    "dominio": "seudominio.com"
+  },
+  "config": {
+    "checkout_url": "https://checkout.exemplo.com/troque-este-link",
+    "delay_segundos": 0,
+    "vsl": {
+      "tipo": "vturb",
+      "formato": "vertical",
+      "player_id": "",
+      "script_src": ""
+    },
+    "pixel_meta_id": "",
+    "gtm_id": "",
+    "variantes": {
+      "hero": "A",
+      "entregaveis": "B"
+    }
+  },
+  "seo": {
+    "titulo": "Método Exemplo · Mentora Exemplo",
+    "descricao": "Página de exemplo da Fábrica de Páginas."
+  },
+  "imagens": {},
+  "alerta": {
+    "texto": "**Atenção:** este é um exemplo fictício. As condições desta oferta podem mudar a qualquer momento."
+  },
+  "header": {
+    "cta_texto": "Quero entrar"
+  },
+  "hero": {
+    "tag": "Exemplo fictício da fábrica",
+    "headline": "Como uma confeiteira de bairro transformou a cozinha de casa num **negócio que vende todo fim de semana**",
+    "subheadline": "Descubra o passo a passo para vender bolos caseiros com encomendas fixas, sem loja, sem funcionários e sem depender de indicação.",
+    "cta": "Quero conhecer o Método Exemplo",
+    "provas": [
+      {
+        "icone": "shield",
+        "texto": "Garantia de 7 dias"
+      },
+      {
+        "icone": "lock",
+        "texto": "Pagamento seguro"
+      },
+      {
+        "icone": "whats",
+        "texto": "Suporte no WhatsApp"
+      }
+    ],
+    "anel": true
+  },
+  "faixa": {
+    "ativa": true,
+    "frases": [
+      "Encomendas fixas",
+      "Cozinha de casa",
+      "Preço certo",
+      "Clientes que voltam"
+    ]
+  },
+  "numeros": {
+    "ativa": true,
+    "itens": [
+      {
+        "numero": "7 dias",
+        "legenda": "de garantia incondicional"
+      },
+      {
+        "numero": "4 passos",
+        "legenda": "do primeiro bolo à primeira encomenda"
+      },
+      {
+        "numero": "1 cozinha",
+        "legenda": "é tudo que você precisa para começar"
+      }
+    ]
+  },
+  "depoimentos": {
+    "titulo": "Pessoas que já aplicam o **Método Exemplo**",
+    "subtitulo": "Depoimentos ilustrativos: no projeto real, aqui entram os vídeos do Vimeo.",
+    "videos": [
+      {
+        "rotulo": "Depoimento 01"
+      },
+      {
+        "rotulo": "Depoimento 02"
+      },
+      {
+        "rotulo": "Depoimento 03"
+      },
+      {
+        "rotulo": "Depoimento 04"
+      }
+    ]
+  },
+  "mentor": {
+    "eyebrow": "Sua mentora",
+    "titulo": "Quem sou eu e qual **meu propósito?**",
+    "assinatura": {
+      "nome": "Mentora Exemplo",
+      "papel": "Criadora do método"
+    },
+    "paragrafos": [
+      "Meu nome é **Mentora Exemplo**. Esta é uma história fictícia, escrita só para mostrar como a seção funciona.",
+      "Comecei vendendo bolos para vizinhos e, depois de muitos erros de preço e de entrega, organizei um jeito simples de vender toda semana.",
+      "Hoje, meu propósito é ensinar esse caminho para quem quer transformar a cozinha de casa numa fonte de renda."
+    ],
+    "credenciais": [
+      "Confeiteira há 10 anos",
+      "Mais de 1.000 encomendas",
+      "Professora de confeitaria"
+    ],
+    "linha_do_tempo": {
+      "ativa": true,
+      "titulo": "Da cozinha de casa **ao negócio**",
+      "itens": [
+        {
+          "quando": "Início",
+          "titulo": "Os primeiros bolos",
+          "texto": "Vendia para vizinhos, sem preço definido e sem agenda."
+        },
+        {
+          "quando": "Virada",
+          "titulo": "Organizei o processo",
+          "texto": "Criei cardápio fixo, preço certo e dias de entrega."
+        },
+        {
+          "quando": "Hoje",
+          "titulo": "Encomendas toda semana",
+          "texto": "Um negócio previsível, feito na cozinha de casa.",
+          "destaque": true
+        }
+      ]
+    },
+    "proposito": {
+      "citacao": "Quero mostrar que dá para viver de confeitaria começando na cozinha de casa.",
+      "autor": "Mentora Exemplo"
+    }
+  },
+  "produto": {
+    "eyebrow": "O Método",
+    "titulo": "O que é o **Método Exemplo?**",
+    "lead": "Um passo a passo para vender bolos caseiros com encomendas fixas, do cardápio à entrega.",
+    "nao_e": {
+      "nao": [
+        "Não é ~~mais um curso de receitas~~",
+        "Não é ~~promessa de dinheiro fácil~~"
+      ],
+      "sim": "É um **método de vendas** para quem já sabe fazer um bolo gostoso"
+    },
+    "blocos": [
+      {
+        "tipo": "painel-escuro",
+        "eyebrow": "No centro de tudo",
+        "titulo": "O **cardápio enxuto**",
+        "lead": "Poucos sabores, bem feitos, com preço que dá lucro.",
+        "paineis": [
+          {
+            "icone": "target",
+            "kicker": "O problema",
+            "titulo": "Cardápio grande demais trava a produção",
+            "etiquetas": [
+              "Desperdício",
+              "Atraso",
+              "Preço errado"
+            ]
+          },
+          {
+            "icone": "book",
+            "kicker": "A solução",
+            "titulo": "Três sabores campeões",
+            "texto": "Você escolhe os sabores que mais vendem e foca neles."
+          },
+          {
+            "icone": "money",
+            "kicker": "O resultado",
+            "titulo": "Lucro em cada encomenda",
+            "texto": "Com custo calculado, cada bolo vendido dá lucro de verdade."
+          }
+        ],
+        "antes_depois": {
+          "antes": {
+            "rotulo": "Antes",
+            "texto": "Encomendas soltas, preço no chute e semanas sem vender."
+          },
+          "depois": {
+            "rotulo": "Depois",
+            "texto": "Agenda de encomendas, preço certo e **clientes que voltam**."
+          }
+        }
+      },
+      {
+        "tipo": "analogia",
+        "eyebrow": "Por que funciona",
+        "titulo": "É como ter uma **padaria de bairro**",
+        "texto": "As pessoas compram de quem elas conhecem e confiam. O método ajuda você a virar a confeiteira de referência da sua região.",
+        "destaque": {
+          "valor": "1 cliente = **muitas encomendas**",
+          "texto": "Quem gosta do seu bolo volta em todo aniversário."
+        },
+        "fluxo": [
+          {
+            "icone": "home",
+            "texto": "Você produz em casa"
+          },
+          {
+            "icone": "users",
+            "texto": "Os vizinhos encomendam"
+          },
+          {
+            "icone": "heart",
+            "texto": "Eles indicam"
+          },
+          {
+            "icone": "repeat",
+            "texto": "E voltam sempre"
+          }
+        ]
+      }
+    ],
+    "cta": {
+      "texto": "Quero fazer parte",
+      "destino": "#oferta"
+    }
+  },
+  "diferente": {
+    "eyebrow": "A verdade",
+    "titulo": "Por que isso é diferente de **TUDO** que você já viu?",
+    "citacao": "Mais um curso de receitas. No fim, eu continuo sem vender.",
+    "paragrafos": [
+      "Eu sei o que você está pensando. Eu também pensava assim.",
+      "Receita boa você já tem. O que falta é um jeito simples de vender toda semana."
+    ],
+    "blocos_antes": [
+      {
+        "tipo": "frase-destaque",
+        "texto": "O problema nunca foi a ~~receita~~.\nO problema sempre foi a **venda.**"
+      }
+    ],
+    "comparativo": {
+      "eles": {
+        "titulo": "Cursos comuns",
+        "itens": [
+          "Ensinam receitas e param aí",
+          "Não falam de preço",
+          "Deixam você sozinha"
+        ]
+      },
+      "nos": {
+        "titulo": "O Método Exemplo",
+        "itens": [
+          "Ensina a **vender** o que você já faz",
+          "Mostra como calcular o preço",
+          "Tem suporte no WhatsApp"
+        ]
+      }
+    },
+    "blocos_depois": [
+      {
+        "tipo": "citacao-icone",
+        "icone": "heart",
+        "texto": "Quando o bolo é bom e a cliente confia em você, ela volta. O método só organiza esse caminho."
+      }
+    ]
+  },
+  "como_funciona": {
+    "ativa": true,
+    "eyebrow": "Na prática",
+    "titulo": "Como funciona **o método**",
+    "passos": [
+      {
+        "titulo": "Monte seu cardápio enxuto",
+        "texto": "Escolha os três sabores que mais vendem."
+      },
+      {
+        "titulo": "Calcule o preço certo",
+        "texto": "Use a planilha para não ter prejuízo."
+      },
+      {
+        "titulo": "Divulgue na sua região",
+        "texto": "Use as mensagens prontas do método."
+      },
+      {
+        "titulo": "Receba as encomendas",
+        "texto": "Organize a agenda da semana."
+      }
+    ]
+  },
+  "entregaveis": {
+    "titulo": "Entre no Método Exemplo **e receba:**",
+    "itens": [
+      {
+        "titulo": "Aulas do **método completo**",
+        "texto": "Do cardápio à entrega, em aulas curtas e diretas."
+      },
+      {
+        "titulo": "Planilha de **preço e custo**",
+        "texto": "Para saber exatamente quanto cobrar em cada bolo."
+      },
+      {
+        "titulo": "Suporte **no WhatsApp**",
+        "texto": "Tire dúvidas com a equipe enquanto aplica o método."
+      }
+    ],
+    "bonus": [
+      {
+        "titulo": "Pacote de mensagens prontas",
+        "texto": "Textos para divulgar seus bolos nas redes e no WhatsApp."
+      }
+    ],
+    "modulos": {
+      "ativa": false
+    },
+    "missao": "Exemplo fictício: no projeto real, aqui entra a frase de missão da copy."
+  },
+  "oferta": {
+    "eyebrow": "Sua vaga",
+    "titulo": "Você está a um passo de **vender toda semana!**",
+    "lead": "O investimento é **menor que o preço de um bolo por semana.**",
+    "ancoragens": [
+      {
+        "rotulo": "Curso de confeitaria",
+        "valor": "R$ 1.500",
+        "texto": "Ensina receitas, mas não ensina a vender."
+      },
+      {
+        "rotulo": "Consultoria individual",
+        "valor": "R$ 3.000",
+        "texto": "Caro para quem está começando."
+      },
+      {
+        "rotulo": "Errar sozinha",
+        "valor": "Meses perdidos",
+        "texto": "O preço de aprender na tentativa e erro."
+      }
+    ],
+    "card": {
+      "tag": "Valor de exemplo",
+      "titulo": "Acesso completo ao Método Exemplo",
+      "lista": [
+        {
+          "titulo": "Aulas do método completo",
+          "texto": "Do cardápio à entrega"
+        },
+        {
+          "titulo": "Planilha de preço e custo",
+          "texto": "Para nunca ter prejuízo"
+        },
+        {
+          "titulo": "Suporte no WhatsApp",
+          "texto": "Durante a aplicação"
+        },
+        {
+          "titulo": "Bônus: mensagens prontas",
+          "texto": "Para divulgar",
+          "bonus": true
+        }
+      ]
+    },
+    "preco": {
+      "parcelas": "12x",
+      "valor_parcela": "19,70",
+      "avista": "R$ 197",
+      "por_dia": "Menos de **R$ 1 por dia**"
+    },
+    "cta": "Quero garantir minha vaga",
+    "comparacoes": [
+      {
+        "icone": "heart",
+        "texto": "Menos que um bolo por semana"
+      },
+      {
+        "icone": "dinner",
+        "texto": "Menos que um jantar fora"
+      },
+      {
+        "icone": "gift",
+        "texto": "Menos que um presente de aniversário"
+      }
+    ]
+  },
+  "garantia": {
+    "dias": 7,
+    "titulo": "Garantia incondicional **de 7 dias**",
+    "paragrafos": [
+      "Você entra, assiste às aulas e testa o método.",
+      "Se em 7 dias achar que não é para você, devolvemos 100% do valor. Sem perguntas."
+    ],
+    "selos": [
+      "Sem perguntas",
+      "Sem burocracia"
+    ],
+    "cta": "Quero testar com garantia"
+  },
+  "faq": {
+    "ativa": true,
+    "titulo": "Ainda com **dúvidas?**",
+    "itens": [
+      {
+        "pergunta": "Preciso ter experiência?",
+        "resposta": "Não. Se você já faz um bolo gostoso, o método ensina a vender."
+      },
+      {
+        "pergunta": "Como recebo o acesso?",
+        "resposta": "Logo depois do pagamento, por e-mail."
+      },
+      {
+        "pergunta": "E se eu não gostar?",
+        "resposta": "Você tem 7 dias de garantia incondicional."
+      }
+    ]
+  },
+  "urgencia": {
+    "selo": "Vagas limitadas",
+    "titulo": "Essa condição **não vai durar para sempre**",
+    "lead": "Exemplo fictício: aqui entra o argumento de escassez da copy.",
+    "paineis": [
+      {
+        "icone": "users",
+        "titulo": "Suporte limitado",
+        "texto": "O suporte é individual, então as vagas são poucas."
+      },
+      {
+        "icone": "clock",
+        "titulo": "Preço de lançamento",
+        "texto": "Depois desta turma, o valor sobe."
+      }
+    ],
+    "frase_final": "O melhor momento para começar **é agora.**",
+    "cta": "Garantir minha vaga agora"
+  },
+  "rodape": {
+    "ano": "2026",
+    "disclaimer": "Página de EXEMPLO da Fábrica de Páginas. Marca, pessoa, depoimentos e números são fictícios."
+  }
+}

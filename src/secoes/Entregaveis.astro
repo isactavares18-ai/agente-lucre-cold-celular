@@ -1,0 +1,78 @@
+---
+// Variante A: blocos alternados imagem/texto. Variante B: 3 cards lado a lado.
+import { titulo, texto } from "../lib/texto";
+const { c, variante = "A" } = Astro.props;
+const d = c.entregaveis, mod = d.modulos;
+const num = (i: number) => String(i + 1).padStart(2, "0");
+---
+<section class="section deliver" id="recebe">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow eyebrow--center">{d.eyebrow ?? "O que você recebe"}</span>
+      <h2 class="h-section" set:html={titulo(d.titulo)} />
+    </div>
+
+    {variante === "B" ? (
+      <div class="deliver-cards" data-stagger>
+        {d.itens.map((it: any, i: number) => (
+          <article class="deliver-card">
+            {it.imagem
+              ? <img src={`/img/${it.imagem}`} alt={it.titulo} loading="lazy" width="544" height="295">
+              : <div class="deliver-card__num">{num(i)}</div>}
+            <h3 class="deliver-card__title" set:html={titulo(it.titulo)} />
+            <p set:html={texto(it.texto)} />
+            {it.lista?.length > 0 && <ul class="feature__list">{it.lista.map((l: string) => <li><span set:html={texto(l)} /></li>)}</ul>}
+          </article>
+        ))}
+      </div>
+    ) : d.itens.map((it: any, i: number) => (
+      <article class:list={["feature", { "feature--reverse": i % 2 === 1 }]}>
+        <div class:list={["feature__media reveal", { "feature__media--card": it.estilo === "card" }]} data-reveal={it.estilo === "card" ? "clip" : (i % 2 ? "right" : "left")}>
+          <span class="feature__num" aria-hidden="true">{num(i)}</span>
+          {it.imagem
+            ? <img data-parallax="0.05" src={`/img/${it.imagem}`} alt={it.alt ?? it.titulo} width="720" height="600" loading="lazy">
+            : <div class="placeholder">IMAGEM: {it.titulo}</div>}
+        </div>
+        <div>
+          <span class="eyebrow reveal">{it.eyebrow ?? `Entregável ${num(i)}`}</span>
+          <h3 class="feature__title reveal" set:html={titulo(it.titulo)} />
+          <p class="feature__text reveal" set:html={texto(it.texto)} />
+          {it.lista?.length > 0 && <ul class="feature__list" data-stagger>{it.lista.map((l: string) => <li><span set:html={texto(l)} /></li>)}</ul>}
+        </div>
+      </article>
+    ))}
+
+    {d.bonus?.map((b: any) => (
+      <div class="bonus reveal" data-reveal="scale">
+        <div class="bonus__badge"><span><b>+1</b>Bônus</span></div>
+        <div><h3>{b.titulo}</h3><p set:html={texto(b.texto)} /></div>
+      </div>
+    ))}
+
+    {mod?.ativa && mod.itens?.length > 0 && (
+      <div class="modules">
+        <div class="modules__head">
+          <div>
+            <span class="eyebrow reveal">{mod.eyebrow ?? "Área de membros"}</span>
+            <h3 class="h-mid reveal" set:html={titulo(mod.titulo)} />
+          </div>
+          <div class="journey__nav reveal">
+            <button class="icon-btn" type="button" data-prev="modulos" aria-label="Módulo anterior"><svg><use href="#i-left"/></svg></button>
+            <button class="icon-btn" type="button" data-next="modulos" aria-label="Próximo módulo"><svg><use href="#i-right"/></svg></button>
+          </div>
+        </div>
+        <div class="modules__track" data-carousel="modulos" data-stagger style={mod.proporcao ? `--modulo-ar:${mod.proporcao}` : undefined}>
+          {mod.itens.map((m: any, i: number) => (
+            <figure class="module">
+              <img src={`/img/${m.imagem}`} alt={`Módulo ${num(i)}: ${m.titulo}`} width="900" height="552" loading="lazy">
+              <figcaption class="module__cap">{m.titulo} <span>Módulo {num(i)}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="progress" aria-hidden="true"><i data-progress="modulos"></i></div>
+      </div>
+    )}
+
+    {d.missao && <p class="mission reveal">{d.missao}</p>}
+  </div>
+</section>

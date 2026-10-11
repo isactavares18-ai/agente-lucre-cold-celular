@@ -1,0 +1,16 @@
+---
+const { c } = Astro.props;
+const d = c.rodape, img = c.imagens ?? {};
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      {img.logo ? <img src={`/img/${img.logo}`} alt={c.aluno.produto} width="327" height="89" loading="lazy"> : <b>{c.aluno.produto}</b>}
+      <nav class="site-footer__links" aria-label="Links legais">
+        <a href={d.termos_url ?? "#"}>Termos de Uso</a>
+        <a href={d.privacidade_url ?? "#"}>Políticas de Privacidade</a>
+      </nav>
+    </div>
+    <p class="site-footer__disc">© <span data-year>{d.ano}</span> {c.aluno.produto} · {c.aluno.nome}. Todos os direitos reservados.<br>{d.disclaimer}</p>
+  </div>
+</footer>
